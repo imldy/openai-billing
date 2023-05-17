@@ -20,6 +20,16 @@ This project provides a quick and easy way to check OpenAI API Key balances, sup
 2. 本地用浏览器打开，或者上传到服务器打开
 3. 网页 footer 添加了指向该项目的超链接，不喜欢可以删掉
 
+## 部署到 CloudFare Pages
+
+1. Fork本仓库
+2. CloudFare面板
+3. 左侧Pages
+4. 创建项目-连接到Git
+5. 选择你Fork得到的仓库
+6. 构建命令：`mv checkbilling.html index.html`。此处设置后可以访问根目录看到查询页面，无需输入路径
+7. 保存并部署
+
 ## 反向代理搭建：
 
 1. 注册并登录 Cloudflare
