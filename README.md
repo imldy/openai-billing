@@ -12,7 +12,7 @@ This project provides a quick and easy way to check OpenAI API Key balances, sup
 
 ## 如何使用？
 
-直接使用：https://aivesa.com/checkbilling
+直接使用：https://openai-bill.imldy.cn/
 
 ## 独立部署：
 
