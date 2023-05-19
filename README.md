@@ -37,7 +37,7 @@ This project provides a quick and easy way to check OpenAI API Key balances, sup
 3. 创建后点击快速编辑按钮，将项目中 cloudflare.worker.js 中的代码复制下来，粘贴到编辑区域，保存并部署即可。
 4. 获取反向代理的链接，或者使用自己的 domain 作为反向代理
 
-##鸣谢
+## 鸣谢
 
 这是一个胶水项目，灵感和大部分源码来自于多个项目，在此一并鸣谢，感谢大佬们的付出：
 1. 外观界面参考了 @x-dr 大佬的项目：https://github.com/x-dr/chatgptProxyAPI
