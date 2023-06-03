@@ -401,6 +401,7 @@
           return;
         }
         const subscriptionData = await response.json();
+        const totalAmount = subscriptionData.hard_limit_usd;
         const has_payment_method = subscriptionData.has_payment_method; // 是否存在支付方式
 
 
