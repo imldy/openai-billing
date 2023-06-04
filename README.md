@@ -1,6 +1,10 @@
 # openai-billing
 This project provides a quick and easy way to check OpenAI API Key balances, supports multiple key checks, and includes a tutorial for setting up a Cloudflare reverse proxy.这个项目提供了一个快速简便的方式来查询 OpenAI API Key 的余额，支持多个 Key 的查询，并附带了 Cloudflare 反向代理的搭建教程。
 
+## 截图演示
+
+![image](https://github.com/imldy/openai-billing/assets/53949747/99f2784c-6e33-494d-8ad8-d2a61dcee0b2)
+
 ## Feature：
 
 1. 纯开源项目，使用 html 内的js 脚本请求内容，不会收集任何数据
