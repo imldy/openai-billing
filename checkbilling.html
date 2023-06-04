@@ -363,6 +363,8 @@
             <th style="width: 50px">总额度</th>
             <th style="width: 50px">已使用</th>
             <th style="width: 50px">剩余量</th>
+            <th style="width: 50px">使用计划</th>
+            <th style="width: 50px">到期时间</th>
         </tr>
         </thead>
         <tbody>
@@ -373,6 +375,11 @@
                 <td>{{ result.totalAmount.toFixed(2) }}</td>
                 <td>{{ result.totalUsage.toFixed(2) }}</td>
                 <td>{{ result.totalAvailable.toFixed(2) }}</td>
+                <td>
+                    <span v-if="result.plan.id === 'free'">免费试用</span>
+                    <span v-else>付费订阅</span>
+                </td>
+                <td>{{ formatTime(result.accessUntil) }}</td>
             </template>
         </tr>
         </tbody>
@@ -414,6 +421,10 @@
             }
         },
         methods: {
+            formatTime(timestamp) {
+                const date = new Date(timestamp * 1000);
+                return date.toLocaleString();
+            },
             formatDate: function (date) {
                 const year = date.getFullYear();
                 const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -467,6 +478,8 @@
                     let apiKey = this.apiKeys[i];
 
                     const subscriptionData = await this.getSubscription(apiKey)
+                    const plan = subscriptionData.plan; // 到期时间
+                    const accessUntil = subscriptionData.access_until; // 到期时间
                     const totalAmount = subscriptionData.hard_limit_usd;
                     // 是否存在支付方式
                     const has_payment_method = subscriptionData.has_payment_method;
@@ -480,7 +493,9 @@
                         apiKey: apiKey,
                         totalAmount: totalAmount,
                         totalUsage: totalUsage,
-                        totalAvailable: totalAmount - totalUsage
+                        totalAvailable: totalAmount - totalUsage,
+                        plan: plan,
+                        accessUntil: accessUntil
                     });
                 }
                 this.loading = false;
