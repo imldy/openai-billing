@@ -369,7 +369,7 @@
         <tbody>
         <tr v-for="(result, index) in results" :key="index">
             <td>{{ result.apiKey.replace(/^(sk-[a-zA-Z0-9]{4})[a-zA-Z0-9]*(.{6})$/, "$1***$2") }}</td>
-            <td v-if="result.error">{{ result.error }}</td>
+            <td v-if="result.error" colspan="5" class="error">账号异常：{{ result.errorInfo }}</td>
             <template v-else>
                 <td>{{ result.totalAmount.toFixed(2) }}</td>
                 <td :style="progressStyle(result.totalAmount, result.totalUsage)">
@@ -491,6 +491,14 @@
                     let apiKey = this.apiKeys[i];
 
                     const subscriptionData = await this.getSubscription(apiKey)
+                    if (subscriptionData.hasOwnProperty('error')) {
+                        this.results.push({
+                            apiKey: apiKey,
+                            error: true,
+                            errorInfo: subscriptionData.error
+                        })
+                        continue
+                    }
                     const plan = subscriptionData.plan; // 到期时间
                     const accessUntil = subscriptionData.access_until; // 到期时间
                     const totalAmount = subscriptionData.hard_limit_usd;
