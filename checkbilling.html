@@ -6,6 +6,7 @@
     <link rel="icon" href="./favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="config.js"></script>
     <title>查询 OpenAI API 余额</title>
     <style>
         :root {
@@ -344,9 +345,7 @@
     <h2>选择查询线路</h2>
     <p>支持自定义线路，官网线路需要魔法</p>
     <select v-model="apiUrlSelect" id="api-url-select">
-        <option value="https://openai-proxy.imldy.cn">【CloudFlare】openai-proxy.imldy.cn</option>
-        <option value="https://api.openai.imldy.cn">【Vercel】api.openai.imldy.cn</option>
-        <option value="https://api.openai.com">【官网线路】api.openai.com</option>
+        <option v-for="api in apis" :value="api.baseURL">{{ api.name }}</option>
         <option value="custom">自定义 ...</option>
     </select>
 
@@ -395,8 +394,9 @@
     new Vue({
         el: '#app',
         data: {
+            apis: apis,
             apiKeyInput: '',
-            apiUrlSelect: 'https://api.openai.com',
+            apiUrlSelect: apis[0].baseURL,
             customUrlInput: '',
             loading: false,
             showResults: false,
