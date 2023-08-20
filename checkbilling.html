@@ -265,9 +265,8 @@
         #result-table th {
             background-color: var(--color-primary);
             color: #fff;
-            font-weight: 400;
             height: 20px;
-            padding: 10px 25px;
+            padding: 10px 10px;
             text-align: left;
             border: 1px solid #dcdcdc;
         }
@@ -276,7 +275,7 @@
         #result-table td {
             height: 20px;
             text-align: left;
-            padding: 10px 25px;
+            padding: 5px 10px;
             border: 1px solid #d3d3d3;
         }
 
@@ -373,9 +372,11 @@
                 <td>{{ result.totalAmount.toFixed(2) }}</td>
                 <td :style="progressStyle(result.totalAmount, result.totalUsage)">
                     {{ result.totalUsage.toFixed(2) }}
+                    ({{ ((result.totalUsage / result.totalAmount) * 100).toFixed(2) }}%)
                 </td>
                 <td :style="progressStyle(result.totalAmount, result.totalAvailable)">
                     {{ result.totalAvailable.toFixed(2) }}
+                    ({{ ((result.totalAvailable / result.totalAmount) * 100).toFixed(2) }}%)
                 </td>
                 <td>
                     <span v-if="result.plan.id === 'free'">免费试用</span>
