@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
     <script src="config.js"></script>
-    <title>查询 OpenAI API 余额</title>
+    <title>查询 OpenAI API 余额 - 支持 sess KEYdede</title>
     <style>
         :root {
             --color-primary: #5c7cfa;
@@ -336,9 +336,9 @@
     </header>
 
 
-    <h2>输入 API KEY</h2>
+    <h2>输入 sess KEY</h2>
     <p>本站不保存 KEY 信息，查询后请自行保存</p>
-    <textarea v-model="apiKeyInput" placeholder="请输入 API-KEY，必须包含 sk-,多个可直接粘贴"></textarea>
+    <textarea v-model="apiKeyInput" placeholder="请输入 sess-KEY，必须包含 sess-,多个可直接粘贴"></textarea>
     <!-- API链接选择框 -->
     <div class="api-url-container"></div>
     <!-- API链接选择 -->
@@ -367,7 +367,7 @@
         </thead>
         <tbody>
         <tr v-for="(result, index) in results" :key="index">
-            <td>{{ result.apiKey.replace(/^(sk-[a-zA-Z0-9]{4})[a-zA-Z0-9]*(.{6})$/, "$1***$2") }}</td>
+            <td>{{ result.apiKey.replace(/^(sess-[a-zA-Z0-9]{4})[a-zA-Z0-9]*(.{6})$/, "$1***$2") }}</td>
             <td v-if="result.error" colspan="5" class="error">账号异常：{{ result.errorInfo }}</td>
             <template v-else>
                 <td>{{ result.totalAmount.toFixed(2) }}</td>
@@ -407,7 +407,7 @@
             apiKeys() {
                 return this.apiKeyInput.split(/[,\s，\n]+/)
                     .map(key => key.trim())
-                    .filter(key => key.startsWith("sk-"));
+                    .filter(key => key.startsWith("sess-"));
             },
             apiUrl() {
                 let apiUrl = "";
@@ -471,10 +471,10 @@
                     return;
                 }
                 if (this.apiKeys.length === 0) {
-                    alert("请填写API KEY");
+                    alert("请填写sess KEY");
                     return;
                 } else {
-                    alert("成功匹配到 API Key，确认后开始查询，匹配到的 API Key 为：" + this.apiKeys);
+                    alert("成功匹配到 sess Key，确认后开始查询，匹配到的 sess Key 为：" + this.apiKeys);
                 }
                 this.showResults = true;
                 this.loading = true;
