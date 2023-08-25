@@ -357,9 +357,9 @@
         <thead>
         <tr>
             <th>API KEY</th>
-            <th style="width: 50px">总额度</th>
-            <th style="width: 100px">已使用</th>
-            <th style="width: 100px">剩余量</th>
+            <th style="width: 100px">总额度({{ totalResult.totalAmount.toFixed(2) }})</th>
+            <th style="width: 100px">已使用({{ totalResult.totalUsage.toFixed(2) }})</th>
+            <th style="width: 100px">剩余量({{ totalResult.totalAvailable.toFixed(2) }})</th>
             <th style="width: 60px">使用计划</th>
             <th style="width: 130px">到期时间</th>
         </tr>
@@ -405,6 +405,29 @@
             queriedApiKeys: []
         },
         computed: {
+            totalResult() {
+                const results = this.results;
+
+                // 初始化总数变量
+                let totalAmount = 0;
+                let totalUsage = 0;
+                let totalAvailable = 0;
+
+                // 遍历results数组并累加对应属性的值
+                for (let i = 0; i < results.length; i++) {
+                    const result = results[i];
+                    totalAmount += result.totalAmount;
+                    totalUsage += result.totalUsage;
+                    totalAvailable += result.totalAvailable;
+                }
+
+                // 返回包含计算结果的对象
+                return {
+                    totalAmount,
+                    totalUsage,
+                    totalAvailable
+                };
+            },
             apiKeys() {
                 return this.apiKeyInput.split(/[,\s，\n]+/)
                     .map(key => key.trim())
