@@ -416,6 +416,7 @@
                 // 遍历results数组并累加对应属性的值
                 for (let i = 0; i < results.length; i++) {
                     const result = results[i];
+                    if (result.error) continue
                     totalAmount += result.totalAmount;
                     totalUsage += result.totalUsage;
                     totalAvailable += result.totalAvailable;
