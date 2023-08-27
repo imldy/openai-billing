@@ -419,7 +419,9 @@
                     if (result.error) continue
                     totalAmount += result.totalAmount;
                     totalUsage += result.totalUsage;
-                    totalAvailable += result.totalAvailable;
+                    if (result.totalAvailable > 0) {
+                        totalAvailable += result.totalAvailable;
+                    }
                 }
 
                 // 返回包含计算结果的对象
